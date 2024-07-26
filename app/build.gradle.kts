@@ -40,4 +40,17 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
+    implementation(libs.browser)
+    implementation(libs.spotify.auth)
+    annotationProcessor(libs.lombok)
+    implementation(libs.lombok)
+    implementation(libs.room)
+    annotationProcessor(libs.room.compiler)
+
+
 }
