@@ -5,6 +5,7 @@ plugins {
 android {
     namespace = "com.example.music_app"
     compileSdk = 34
+    viewBinding.isEnabled = true
 
     defaultConfig {
         applicationId = "com.example.music_app"
@@ -37,9 +38,11 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.truth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.rules)
 
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
@@ -51,6 +54,6 @@ dependencies {
     implementation(libs.lombok)
     implementation(libs.room)
     annotationProcessor(libs.room.compiler)
-
-
+    implementation(libs.bumptech)
+    androidTestImplementation(libs.mockito)
 }

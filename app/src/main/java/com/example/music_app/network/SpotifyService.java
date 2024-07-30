@@ -10,7 +10,7 @@ import retrofit2.http.Query;
 import retrofit2.http.Header;
 import retrofit2.http.Path;
 
-
+//TODO singleton??
 public interface SpotifyService {
     @GET("v1/artists/{id}")
     Call<ArtistDto> getArtist(

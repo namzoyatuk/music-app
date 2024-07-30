@@ -1,5 +1,6 @@
 package com.example.music_app.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,5 +12,10 @@ public class AlbumActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album);
+    }
+
+
+    public static Intent createIntent(AppCompatActivity activity) {
+        return new Intent(activity, AlbumActivity.class);
     }
 }

@@ -13,9 +13,17 @@ import retrofit2.Response;
 
 public class TrackRepository {
     private final SpotifyService spotifyService;
+    private static TrackRepository instance;
 
-    public TrackRepository(SpotifyService spotifyService) {
+    private TrackRepository(SpotifyService spotifyService) {
         this.spotifyService = spotifyService;
+    }
+
+    public static TrackRepository getInstance(SpotifyService spotifyService) {
+        if (instance == null) {
+            instance = new TrackRepository(spotifyService);
+        }
+        return instance;
     }
 
     public LiveData<TrackDto> getTrack(String trackId) {

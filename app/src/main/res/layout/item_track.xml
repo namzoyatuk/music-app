@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+
+    <ImageView
+        android:id="@+id/track_image"
+        android:layout_width="match_parent"
+        android:layout_height="691dp"
+        android:layout_weight="400"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/artist_name"
+        android:layout_width="match_parent"
+        android:layout_height="149dp"
+        android:paddingTop="8dp"
+        android:textColor="@android:color/holo_purple"
+        android:textSize="16sp" />
+
+</LinearLayout>

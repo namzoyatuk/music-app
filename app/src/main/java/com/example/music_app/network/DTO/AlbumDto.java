@@ -29,6 +29,5 @@ public class AlbumDto {
         private String previous;
         private int total;
         private List<TrackDto> items;
-
     }
 }

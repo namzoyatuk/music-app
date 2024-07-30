@@ -8,17 +8,31 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.music_app.databinding.ActivityMainBinding;
+import com.example.music_app.ui.AlbumActivity;
+import com.example.music_app.ui.ArtistActivity;
+import com.example.music_app.ui.TrackActivity;
+
 public class MainActivity extends AppCompatActivity {
+    private ActivityMainBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        binding.buttonAlbum.setOnClickListener(v -> {
+            startActivity(AlbumActivity.createIntent(this));
+        });
+
+        binding.buttonArtist.setOnClickListener(v -> {
+            startActivity(ArtistActivity.createIntent(this));
+        });
+
+        binding.buttonTrack.setOnClickListener(v -> {
+            startActivity(TrackActivity.createIntent(this));
         });
     }
 }
