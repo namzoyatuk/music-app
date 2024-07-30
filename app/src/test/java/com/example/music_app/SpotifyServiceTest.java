@@ -7,6 +7,7 @@ import com.example.music_app.network.DTO.TrackDto;
 import com.example.music_app.network.RetrofitClient;
 import com.example.music_app.network.SpotifyService;
 import com.example.music_app.network.DTO.ArtistDto;
+import com.example.music_app.util.Constants;
 
 import static org.junit.Assert.*;
 
@@ -16,21 +17,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
+
 public class SpotifyServiceTest {
     private final SpotifyService spotifyService = RetrofitClient.getSpotifyService();
-    private final String accessToken = "BQDHuZTJM7aqOAct-KUoWjjn2ccZLDtvB734pUpPe0sWuH66HqtF9vgw9RuFjrNIwBVxDcdcazh0McaldfN3ZqJ0Ja6KPGxPdPlyzLPGAkJbnw2mKHU";
+
 
     @Test
     public void artistGettingValid() {
 
         String artistId = "4Z8W4fKeB5YxbusRsdQVPb";
 
-        Call<ArtistDto> call = spotifyService.getArtist("Bearer " + accessToken, artistId);
+        Call<ArtistDto> call = spotifyService.getArtist(Constants.SPOTIFY_TOKEN, artistId);
 
         try {
             Response<ArtistDto> response = call.execute();
@@ -47,19 +44,17 @@ public class SpotifyServiceTest {
 
     @Test
     public void albumGettingValid() {
-
         String albumId = "5ZICh7iFpmgreWvpU9Og4G";
-
-        Call<AlbumDto> call = spotifyService.getAlbum("Bearer " + accessToken, albumId);
+        Call<AlbumDto> call = spotifyService.getAlbum(Constants.SPOTIFY_TOKEN, albumId);
 
         try {
             Response<AlbumDto> response = call.execute();
             assert response.body() != null;
+            assertEquals(response.body().getName(), "Eve");
             System.err.println(response.body().getName());
             System.err.println(response.body().getImages().get(0).getUrl());
             System.err.println(response.body().getPopularity());
             System.err.println(response.body().getGenres().get(0));
-
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -69,15 +64,16 @@ public class SpotifyServiceTest {
     @Test
     public void trackGettingValid(){
         String trackId = "6G18KE6mtFITAOCFxGjk7P";
-        Call<TrackDto> call = spotifyService.getTrack("Bearer " + accessToken, trackId);
+        Call<TrackDto> call = spotifyService.getTrack(Constants.SPOTIFY_TOKEN, trackId);
         try {
             Response<TrackDto> response = call.execute();
             assert response.body() != null;
             System.err.println(response.body().getName());
             System.err.println(response.body().getAlbum().getName());
-            System.err.println(response.body().getPreview_url());
+            System.err.println(response.body().getPreviewUrl());
             System.err.println(response.body().getPopularity());
             System.err.println(response.body().getArtists().get(0).getName());
+            System.err.println(response.body().getTrackNumber());
         }
         catch (Exception e) {
             System.out.println(e.getMessage());

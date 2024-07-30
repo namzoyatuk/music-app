@@ -1,5 +1,7 @@
 package com.example.music_app.network.DTO;
 
+import androidx.room.Dao;
+
 import java.util.Dictionary;
 import java.util.List;
 
