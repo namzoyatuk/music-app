@@ -14,11 +14,18 @@ import retrofit2.Response;
 
 public class ArtistRepository {
     private final SpotifyService spotifyService;
+    private static ArtistRepository instance;
 
-    public ArtistRepository(SpotifyService spotifyService) {
+    private ArtistRepository(SpotifyService spotifyService) {
         this.spotifyService = spotifyService;
     }
 
+    public static ArtistRepository getInstance(SpotifyService spotifyService) {
+        if (instance == null) {
+            instance = new ArtistRepository(spotifyService);
+        }
+        return instance;
+    }
 
     public LiveData<ArtistDto> getArtist(String artistId) {
         MutableLiveData<ArtistDto> artistData = new MutableLiveData<>();

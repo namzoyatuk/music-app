@@ -54,7 +54,7 @@ public class SpotifyServiceTest {
             System.err.println(response.body().getName());
             System.err.println(response.body().getImages().get(0).getUrl());
             System.err.println(response.body().getPopularity());
-            System.err.println(response.body().getGenres().get(0));
+            System.err.println(response.body().getRelease_date());
         }
         catch (Exception e) {
             System.out.println(e.getMessage());

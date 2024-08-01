@@ -24,7 +24,7 @@ public class TrackActivity extends AppCompatActivity {
         setContentView(R.layout.activity_track);
 
         // TODO binding..
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.recycler_track);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         SpotifyService spotifyService = RetrofitClient.getSpotifyService();

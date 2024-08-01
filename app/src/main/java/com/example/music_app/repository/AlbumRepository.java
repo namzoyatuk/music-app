@@ -14,9 +14,17 @@ import retrofit2.Response;
 
 public class AlbumRepository {
     private final SpotifyService spotifyService;
+    private static AlbumRepository instance;
 
-    public AlbumRepository(SpotifyService spotifyService) {
+    private AlbumRepository(SpotifyService spotifyService) {
         this.spotifyService = spotifyService;
+    }
+
+    public static AlbumRepository getInstance(SpotifyService spotifyService) {
+        if (instance == null) {
+            instance = new AlbumRepository(spotifyService);
+        }
+        return instance;
     }
 
     public LiveData<AlbumDto> getAlbum(String albumId) {

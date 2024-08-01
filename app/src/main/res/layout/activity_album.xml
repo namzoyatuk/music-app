@@ -5,4 +5,15 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_album"
+        android:layout_width="match_parent"
+        android:layout_height="524dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/album_tracks"
+        android:layout_width="match_parent"
+        android:layout_height="391dp"
+        android:layout_marginTop="16dp" />
+
 </LinearLayout>

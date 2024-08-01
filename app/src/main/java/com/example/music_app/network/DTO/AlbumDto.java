@@ -19,6 +19,7 @@ public class AlbumDto {
     private List<String> genres;
     private String label;
     private int popularity;
+    private AlbumTracks tracks;
 
     @Getter
     public static class AlbumTracks {
@@ -30,4 +31,6 @@ public class AlbumDto {
         private int total;
         private List<TrackDto> items;
     }
+
+
 }

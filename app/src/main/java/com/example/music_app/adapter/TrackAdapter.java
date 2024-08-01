@@ -54,7 +54,4 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
         }
     }
 
-
-
-
 }

@@ -28,8 +28,8 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class RepositoryTest {
     private final SpotifyService spotifyService = RetrofitClient.getSpotifyService();
-    ArtistRepository artistRepository = new ArtistRepository(spotifyService);
-    AlbumRepository albumRepository = new AlbumRepository(spotifyService);
+    ArtistRepository artistRepository = ArtistRepository.getInstance(spotifyService);
+    AlbumRepository albumRepository =  AlbumRepository.getInstance(spotifyService);
 
     @Test
     public void testGetArtist() throws InterruptedException {

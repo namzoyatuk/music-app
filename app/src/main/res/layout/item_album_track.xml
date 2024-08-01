@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    >
+
+    <TextView
+        android:id="@+id/album_track_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:padding="1dp"
+        android:textColor="#351A65"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/album_track_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:textColor="#351A65"
+        android:textSize="16sp" />
+</LinearLayout>
