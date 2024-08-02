@@ -5,6 +5,12 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:queryHint="Search for music"/>
+
     <Button
         android:id="@+id/button_album"
         android:layout_width="match_parent"
@@ -22,4 +28,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Go to Track" />
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

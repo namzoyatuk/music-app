@@ -32,9 +32,9 @@ public class TrackActivity extends AppCompatActivity {
         TrackViewModel.Factory factory = new TrackViewModel.Factory(trackRepository);
         trackViewModel = new ViewModelProvider(this, factory).get(TrackViewModel.class);
 
+        String trackId = getIntent().getStringExtra("trackId");
 
-
-        trackViewModel.getTrack("6G18KE6mtFITAOCFxGjk7P").observe(this, track -> {
+        trackViewModel.getTrack(trackId).observe(this, track -> {
             trackAdapter = new TrackAdapter(this, track);
             recyclerView.setAdapter(trackAdapter);
         });

@@ -1,24 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
-
+    android:paddingTop="200dp"
+    android:layout_gravity="center_horizontal"
+    >
 
     <ImageView
         android:id="@+id/track_image"
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:layout_weight="350"
+        android:layout_gravity="center_horizontal"
         />
 
     <TextView
-        android:id="@+id/artist_name"
-        android:layout_width="match_parent"
-        android:layout_height="149dp"
+        android:id="@+id/track_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:paddingTop="8dp"
         android:textColor="#673AB7"
-        android:textSize="16sp" />
+        android:textSize="35sp"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/track_artist_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:textColor="#673AB7"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        android:focusable="true"/>
+
+    <TextView
+        android:id="@+id/track_album_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:textColor="#673AB7"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        android:focusable="true"/>
+
 
 </LinearLayout>

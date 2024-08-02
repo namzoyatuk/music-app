@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.Getter;
 
 @Getter
-public class AlbumDto {
+public class AlbumDto implements Searchable{
     private String album_type;
     private int total_tracks;
     private String href;
@@ -20,6 +20,21 @@ public class AlbumDto {
     private String label;
     private int popularity;
     private AlbumTracks tracks;
+
+    @Override
+    public String getImageUrl() {
+        return images.get(0).getUrl();
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getType() {
+        return "Album";
+    }
 
     @Getter
     public static class AlbumTracks {

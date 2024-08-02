@@ -41,7 +41,9 @@ public class AlbumActivity extends AppCompatActivity {
         AlbumViewModel.Factory factory = new AlbumViewModel.Factory(albumRepository);
         albumViewModel = new ViewModelProvider(this, factory).get(AlbumViewModel.class);
 
-        albumViewModel.getAlbum("5ZICh7iFpmgreWvpU9Og4G").observe(this, album -> {
+        String albumId = getIntent().getStringExtra("albumId");
+
+        albumViewModel.getAlbum(albumId).observe(this, album -> {
             albumAdapter = new AlbumAdapter(this, album);
             recyclerAlbum.setAdapter(albumAdapter);
 

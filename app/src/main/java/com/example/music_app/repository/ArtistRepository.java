@@ -1,11 +1,18 @@
 package com.example.music_app.repository;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.music_app.network.DTO.ArtistDto;
+import com.example.music_app.network.DTO.TopTrackResponseDto;
+import com.example.music_app.network.DTO.TrackDto;
 import com.example.music_app.network.SpotifyService;
 import com.example.music_app.util.Constants;
+import com.spotify.sdk.android.auth.webview.LoginDialog;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,5 +50,27 @@ public class ArtistRepository {
             }
         });
         return artistData;
+    }
+
+    public LiveData<List<TrackDto>> getTopTracks(String artistId) {
+        MutableLiveData<List<TrackDto>> topTracksData = new MutableLiveData<>();
+
+
+        spotifyService.getTopTracks(Constants.SPOTIFY_TOKEN, artistId).enqueue(new Callback<TopTrackResponseDto>() {
+            @Override
+            public void onResponse(Call<TopTrackResponseDto> call, Response<TopTrackResponseDto> response) {
+                if (response.isSuccessful()) {
+                    topTracksData.setValue(response.body().getTracks());
+                    Log.e("ArtistRepository", "getTopTracks: called " + artistId);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TopTrackResponseDto> call, Throwable t) {
+                Log.e("ArtistRepository", "getTopTracks: failed", t);
+                topTracksData.setValue(null);
+            }
+        });
+        return topTracksData;
     }
 }

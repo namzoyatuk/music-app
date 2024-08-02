@@ -3,6 +3,7 @@ package com.example.music_app;
 import org.junit.Test;
 
 import com.example.music_app.network.DTO.AlbumDto;
+import com.example.music_app.network.DTO.TopTrackResponseDto;
 import com.example.music_app.network.DTO.TrackDto;
 import com.example.music_app.network.RetrofitClient;
 import com.example.music_app.network.SpotifyService;
@@ -12,6 +13,8 @@ import com.example.music_app.util.Constants;
 import static org.junit.Assert.*;
 
 import android.util.Log;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -77,6 +80,40 @@ public class SpotifyServiceTest {
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    @Test
+    public void topTracksGettingValid(){
+        String artistId = "4Z8W4fKeB5YxbusRsdQVPb";
+        Call<TopTrackResponseDto> call = spotifyService.getTopTracks(Constants.SPOTIFY_TOKEN, artistId);
+        try {
+            Response<TopTrackResponseDto> response = call.execute();
+            assert response.body() != null;
+            List<TrackDto> tracks = response.body().getTracks();
+            assert response.body() != null;
+            System.err.println(tracks.size());
+            System.err.println(tracks.get(0).getName());
+            System.err.println(tracks.get(1).getName());
+
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //Test for search
+    @Test
+    public void searchValid(){
+        String query = "Eve";
+        Call<com.example.music_app.network.DTO.SearchResponseDto> call = spotifyService.search(Constants.SPOTIFY_TOKEN, query, "album");
+        try {
+            Response<com.example.music_app.network.DTO.SearchResponseDto> response = call.execute();
+            System.err.println(response.body().getAlbums().getItems().get(0).getName());
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("AA");
         }
     }
 }

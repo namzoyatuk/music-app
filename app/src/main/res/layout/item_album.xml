@@ -12,15 +12,30 @@
         android:layout_gravity="center_horizontal"
         />
 
-    <TextView
-        android:id="@+id/album_name"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textStyle="bold"
-        android:paddingTop="8dp"
-        android:textColor="@android:color/holo_purple"
-        android:textSize="40sp" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/album_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:textColor="@android:color/holo_purple"
+            android:textSize="39sp" />
+
+        <TextView
+            android:id="@+id/album_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_purple"
+            android:gravity="end"
+            android:textSize="40sp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/album_artist"
@@ -30,6 +45,8 @@
         android:textStyle="italic"
         android:paddingTop="1dp"
         android:textColor="@android:color/holo_purple"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:clickable="true"
+        android:focusable="true"/>
 
 </LinearLayout>

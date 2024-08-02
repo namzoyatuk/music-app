@@ -7,7 +7,7 @@ import java.util.List;
 import lombok.Getter;
 
 @Getter
-public class TrackDto {
+public class TrackDto implements Searchable {
     private AlbumDto album;
     private List<ArtistDto> artists;
     private int durationMs;
@@ -26,5 +26,20 @@ public class TrackDto {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public String getImageUrl() {
+        return album.getImages().get(0).getUrl();
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getType() {
+        return "Track";
     }
 }

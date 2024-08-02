@@ -15,7 +15,7 @@ public class TrackViewModel extends ViewModel {
     }
 
     public LiveData<TrackDto> getTrack(String trackId) {
-        return trackRepository.getTrack("6G18KE6mtFITAOCFxGjk7P");
+        return trackRepository.getTrack(trackId);
     }
 
 

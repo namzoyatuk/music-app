@@ -8,7 +8,7 @@ import java.util.List;
 import lombok.*;
 
 @Getter
-public class ArtistDto {
+public class ArtistDto implements Searchable {
 
     private String id;
     private String name;
@@ -19,4 +19,21 @@ public class ArtistDto {
     private List<String> genres;
     private int popularity;
 
+    @Override
+    public String getImageUrl() {
+        if (images.isEmpty()) {
+            return null;
+        }
+        return images.get(0).getUrl();
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getType() {
+        return "Artist";
+    }
 }

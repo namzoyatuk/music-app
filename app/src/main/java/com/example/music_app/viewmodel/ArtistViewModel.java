@@ -6,7 +6,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 
 import com.example.music_app.network.DTO.ArtistDto;
+import com.example.music_app.network.DTO.TrackDto;
 import com.example.music_app.repository.ArtistRepository;
+
+import java.util.List;
 
 public class ArtistViewModel extends ViewModel {
     private final ArtistRepository artistRepository;
@@ -19,6 +22,10 @@ public class ArtistViewModel extends ViewModel {
         return artistRepository.getArtist(artistId);
     }
 
+    public LiveData<List<TrackDto>> getTopTracks(String artistId) {
+        return artistRepository.getTopTracks(artistId);
+    }
+
     public static class Factory implements ViewModelProvider.Factory {
         private final ArtistRepository repository;
 
@@ -26,7 +33,7 @@ public class ArtistViewModel extends ViewModel {
             this.repository = repository;
         }
 
-        // TODO ?? what does this code do?
+
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             if (modelClass.isAssignableFrom(ArtistViewModel.class)) {
