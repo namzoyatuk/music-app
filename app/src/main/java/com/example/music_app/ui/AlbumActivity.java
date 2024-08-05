@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.music_app.MainActivity;
 import com.example.music_app.R;
 import com.example.music_app.adapter.AlbumAdapter;
 import com.example.music_app.adapter.AlbumTrackAdapter;
@@ -50,6 +51,13 @@ public class AlbumActivity extends AppCompatActivity {
             albumTrackAdapter = new AlbumTrackAdapter(this, album.getTracks().getItems());
             recyclerAlbumTrack.setAdapter(albumTrackAdapter);
 
+        });
+
+        findViewById(R.id.button_home_album).setOnClickListener(v -> {
+            Intent intent = new Intent(AlbumActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
         });
     }
 

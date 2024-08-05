@@ -2,12 +2,13 @@ package com.example.music_app.network.DTO;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.List;
 
 import lombok.Getter;
 
 @Getter
-public class TrackDto implements Searchable {
+public class TrackDto implements Searchable, Serializable {
     private AlbumDto album;
     private List<ArtistDto> artists;
     private int durationMs;
@@ -30,6 +31,9 @@ public class TrackDto implements Searchable {
 
     @Override
     public String getImageUrl() {
+        if (album == null || album.getImages().isEmpty()) {
+            return null;
+        }
         return album.getImages().get(0).getUrl();
     }
 
@@ -41,5 +45,10 @@ public class TrackDto implements Searchable {
     @Override
     public String getType() {
         return "Track";
+    }
+
+    @Override
+    public String getId() {
+        return id;
     }
 }

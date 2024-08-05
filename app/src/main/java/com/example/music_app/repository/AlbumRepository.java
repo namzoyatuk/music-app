@@ -1,11 +1,17 @@
 package com.example.music_app.repository;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.music_app.network.DTO.AlbumDto;
+import com.example.music_app.network.DTO.GetAlbumsDto;
+import com.example.music_app.network.DTO.SearchAlbumDto;
+import com.example.music_app.network.DTO.SearchResponseDto;
 import com.example.music_app.network.SpotifyService;
 import com.example.music_app.util.Constants;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,17 +37,46 @@ public class AlbumRepository {
         MutableLiveData<AlbumDto> albumData = new MutableLiveData<>();
         spotifyService.getAlbum(Constants.SPOTIFY_TOKEN, albumId).enqueue(new Callback<AlbumDto>() {
             @Override
-            public void onResponse(Call<AlbumDto> call, Response<AlbumDto> response) {
+            public void onResponse(@NonNull Call<AlbumDto> call, @NonNull Response<AlbumDto> response) {
                 if (response.isSuccessful()) {
                     albumData.setValue(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<AlbumDto> call, Throwable t) {
+            public void onFailure(@NonNull Call<AlbumDto> call, @NonNull Throwable t) {
                 // Handle failure
             }
         });
         return albumData;
     }
+
+
+    public LiveData<List<AlbumDto>> getAlbums(List<String> albumIds) {
+        MutableLiveData<List<AlbumDto>> albumsLiveData = new MutableLiveData<>();
+        String ids = String.join(",", albumIds);
+        spotifyService.getAlbums(Constants.SPOTIFY_TOKEN, ids).enqueue(new Callback<GetAlbumsDto>() {
+            @Override
+            public void onResponse(@NonNull Call<GetAlbumsDto> call, @NonNull Response<GetAlbumsDto> response) {
+                if (response.isSuccessful()) {
+                    assert response.body() != null;
+                    albumsLiveData.setValue(response.body().getAlbums());
+                } else {
+                    albumsLiveData.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<GetAlbumsDto> call, @NonNull Throwable t) {
+                albumsLiveData.setValue(null);
+            }
+        });
+        return albumsLiveData;
+    }
+
+
+
+
+
+
 }

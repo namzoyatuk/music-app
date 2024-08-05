@@ -1,5 +1,5 @@
 package com.example.music_app.util;
 
 public class Constants {
-    public static final String SPOTIFY_TOKEN = "Bearer BQCQpovwTuk76CNSNJsLEDM41fYvcxM_ajqvEYT2zOjz_CD9kIqbKRbV-DK-RDd0JKyjAffxODGp0AhAKdD7pWLHyA8nu2otUH3yg0pfhESGfZ40Ojo";
+    public static final String SPOTIFY_TOKEN = "Bearer BQAGTbE2jMEsw0sSVw21Kj8MSr2WiX7DxIUsrqqqIJUPonZJFR4e4Fm-SLXnr6G_DhAHFO3GiXOOjVF3sueY8ausZ72FZILgxGG02N_5_e8LBovwSCM";
 }

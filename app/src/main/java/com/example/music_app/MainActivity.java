@@ -1,9 +1,11 @@
 package com.example.music_app;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.GridLayout;
 import android.widget.SearchView;
 
 import androidx.activity.EdgeToEdge;
@@ -12,50 +14,61 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.music_app.adapter.MainAlbumAdapter;
+import com.example.music_app.database.entitites.Artist;
 import com.example.music_app.databinding.ActivityMainBinding;
 import com.example.music_app.network.RetrofitClient;
 import com.example.music_app.network.SpotifyService;
+import com.example.music_app.repository.AlbumRepository;
 import com.example.music_app.repository.SearchRepository;
 import com.example.music_app.ui.AlbumActivity;
 import com.example.music_app.ui.ArtistActivity;
 import com.example.music_app.ui.SearchFragment;
 import com.example.music_app.ui.TrackActivity;
+import com.example.music_app.viewmodel.AlbumViewModel;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private SearchRepository searchRepository;
+    private MainAlbumAdapter mainAlbumAdapter;
 
-
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.buttonAlbum.setOnClickListener(v -> {
-            Intent intent = new Intent(this, AlbumActivity.class);
-            intent.putExtra("albumId", "5ZICh7iFpmgreWvpU9Og4G");
-            this.startActivity(intent);
-        });
-
-        binding.buttonArtist.setOnClickListener(v -> {
-            Intent intent = new Intent(this, ArtistActivity.class);
-            intent.putExtra("artistId", "4Z8W4fKeB5YxbusRsdQVPb");
-            this.startActivity(intent);
-        });
-
-        binding.buttonTrack.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrackActivity.class);
-            intent.putExtra("trackId", "3gDwQ7TtXVOhtTy83H2ysl");
-            this.startActivity(intent);
-        });
-
-
         SpotifyService spotifyService = RetrofitClient.getSpotifyService();
         searchRepository = SearchRepository.getInstance(spotifyService);
 
-        SearchView searchView = binding.searchView;
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        RecyclerView recyclerViewAlbums = binding.recyclerViewAlbums;
+        recyclerViewAlbums.setLayoutManager(gridLayoutManager);
+
+        AlbumRepository albumRepository = AlbumRepository.getInstance(spotifyService);
+        AlbumViewModel albumViewModel = new ViewModelProvider(this, new AlbumViewModel.Factory(albumRepository)).get(AlbumViewModel.class);
+
+        mainAlbumAdapter = new MainAlbumAdapter(this);
+
+        String[] albumIds = {"5ZICh7iFpmgreWvpU9Og4G","2v9PjvIkQVnyQdtD1iQD7e",
+                            "1m07iv4leo4aoqFs60vHCK", "6GGkLeS1HTtr45DlF8YHYN"};
+        albumViewModel.getAlbums(Arrays.asList(albumIds)).observe(this, albums -> {
+            if (albums != null) {
+                mainAlbumAdapter.setAlbumList(albums);
+                mainAlbumAdapter.notifyDataSetChanged();
+            }
+        });
+
+        binding.recyclerViewAlbums.setAdapter(mainAlbumAdapter);
+
+        SearchView searchView = binding.searchView; // TODO close on X clicked
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -64,10 +77,12 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
+            public boolean onQueryTextChange(String newText) {return false;
             }
         });
+
+
+
     }
 
     private void searchSpotify(String query) {
@@ -86,14 +101,9 @@ public class MainActivity extends AppCompatActivity {
                 transaction.addToBackStack(null);
                 transaction.commit();
 
-                hideButtons();
+                binding.fragmentContainer.setVisibility(View.VISIBLE);
             }
         });
     }
 
-    private void hideButtons() {
-        binding.buttonAlbum.setVisibility(View.GONE);
-        binding.buttonArtist.setVisibility(View.GONE);
-        binding.buttonTrack.setVisibility(View.GONE);
-    }
 }

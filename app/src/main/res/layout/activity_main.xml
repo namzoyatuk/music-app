@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -9,28 +10,22 @@
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:queryHint="Search for music"/>
+        android:queryHint="Search for music" />
 
-    <Button
-        android:id="@+id/button_album"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_albums"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Go to Album" />
-
-    <Button
-        android:id="@+id/button_artist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Go to Artist" />
-
-    <Button
-        android:id="@+id/button_track"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Go to Track" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:baselineAligned="false"
+        android:padding="16dp"
+        android:visibility="visible"
+        tools:visibility="visible" />
 
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
 </LinearLayout>

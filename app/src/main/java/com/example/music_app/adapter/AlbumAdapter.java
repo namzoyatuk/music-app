@@ -17,8 +17,8 @@ import com.example.music_app.ui.ArtistActivity;
 import java.util.List;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> {
-    private Context context;
-    private AlbumDto album;
+    private final Context context;
+    private final AlbumDto album;
 
     public AlbumAdapter(Context context, AlbumDto album) {
         this.context = context;

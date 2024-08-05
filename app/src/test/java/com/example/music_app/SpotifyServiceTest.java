@@ -3,6 +3,9 @@ package com.example.music_app;
 import org.junit.Test;
 
 import com.example.music_app.network.DTO.AlbumDto;
+import com.example.music_app.network.DTO.GetAlbumsDto;
+import com.example.music_app.network.DTO.SearchAlbumDto;
+import com.example.music_app.network.DTO.SearchResponseDto;
 import com.example.music_app.network.DTO.TopTrackResponseDto;
 import com.example.music_app.network.DTO.TrackDto;
 import com.example.music_app.network.RetrofitClient;
@@ -109,6 +112,7 @@ public class SpotifyServiceTest {
         Call<com.example.music_app.network.DTO.SearchResponseDto> call = spotifyService.search(Constants.SPOTIFY_TOKEN, query, "album");
         try {
             Response<com.example.music_app.network.DTO.SearchResponseDto> response = call.execute();
+            assert response.body() != null;
             System.err.println(response.body().getAlbums().getItems().get(0).getName());
         }
         catch (Exception e) {
@@ -116,4 +120,37 @@ public class SpotifyServiceTest {
             System.out.println("AA");
         }
     }
+
+    //Test for new releases
+    @Test
+    public void newReleasesValid(){
+        Call<com.example.music_app.network.DTO.SearchResponseDto> call = spotifyService.getNewReleases(Constants.SPOTIFY_TOKEN);
+        try {
+            Response<com.example.music_app.network.DTO.SearchResponseDto> response = call.execute();
+            assert response.body() != null;
+            System.err.println(response.body().getAlbums().getItems());
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("AA");
+        }
+    }
+
+    @Test
+    public void getAlbumsValid(){
+//        String albumIds = "5ZICh7iFpmgreWvpU9Og4G,7cEfK4Fu6GRuo7G8yvOER,2v9PjvIkQVnyQdtD1iQD7e,1m07iv4leo4aoqFs60vHCK,6GGkLeS1HTtr45DlF8YHYN";
+        String albumIds = "5ZICh7iFpmgreWvpU9Og4G,2v9PjvIkQVnyQdtD1iQD7e,1m07iv4leo4aoqFs60vHCK,6GGkLeS1HTtr45DlF8YHYN";
+
+        Call<GetAlbumsDto> call = spotifyService.getAlbums(Constants.SPOTIFY_TOKEN, albumIds);
+        try {
+            Response<GetAlbumsDto> response = call.execute();
+            assert response.body() != null;
+            System.err.println(response.body().getAlbums());
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("AA");
+        }
+    }
+
 }

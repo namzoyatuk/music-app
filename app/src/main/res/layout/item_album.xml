@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <!-- TODO size of name -->
         <TextView
             android:id="@+id/album_name"
             android:layout_width="wrap_content"

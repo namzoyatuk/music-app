@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.music_app.MainActivity;
 import com.example.music_app.R;
 import com.example.music_app.adapter.TrackAdapter;
 import com.example.music_app.network.RetrofitClient;
@@ -15,7 +16,6 @@ import com.example.music_app.repository.TrackRepository;
 import com.example.music_app.viewmodel.TrackViewModel;
 
 public class TrackActivity extends AppCompatActivity {
-    private TrackViewModel trackViewModel;
     private TrackAdapter trackAdapter;
 
     @Override
@@ -30,13 +30,20 @@ public class TrackActivity extends AppCompatActivity {
         SpotifyService spotifyService = RetrofitClient.getSpotifyService();
         TrackRepository trackRepository = TrackRepository.getInstance(spotifyService);
         TrackViewModel.Factory factory = new TrackViewModel.Factory(trackRepository);
-        trackViewModel = new ViewModelProvider(this, factory).get(TrackViewModel.class);
+        TrackViewModel trackViewModel = new ViewModelProvider(this, factory).get(TrackViewModel.class);
 
         String trackId = getIntent().getStringExtra("trackId");
 
         trackViewModel.getTrack(trackId).observe(this, track -> {
             trackAdapter = new TrackAdapter(this, track);
             recyclerView.setAdapter(trackAdapter);
+        });
+
+        findViewById(R.id.button_home_track).setOnClickListener(v -> {
+            Intent intent = new Intent(TrackActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
         });
     }
 

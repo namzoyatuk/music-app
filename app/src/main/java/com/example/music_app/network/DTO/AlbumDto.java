@@ -1,11 +1,12 @@
 package com.example.music_app.network.DTO;
 
+import java.io.Serializable;
 import java.util.List;
 
 import lombok.Getter;
 
 @Getter
-public class AlbumDto implements Searchable{
+public class AlbumDto implements Searchable, Serializable {
     private String album_type;
     private int total_tracks;
     private String href;
@@ -23,7 +24,7 @@ public class AlbumDto implements Searchable{
 
     @Override
     public String getImageUrl() {
-        return images.get(0).getUrl();
+        return images != null && !images.isEmpty() ? images.get(0).getUrl() : null;
     }
 
     @Override
@@ -36,8 +37,13 @@ public class AlbumDto implements Searchable{
         return "Album";
     }
 
+    @Override
+    public String getId() {
+        return id;
+    }
+
     @Getter
-    public static class AlbumTracks {
+    public static class AlbumTracks implements Serializable {
         private String href;
         private int limit;
         private String next;

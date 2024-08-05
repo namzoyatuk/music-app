@@ -2,6 +2,8 @@ package com.example.music_app.network;
 
 import com.example.music_app.network.DTO.AlbumDto;
 import  com.example.music_app.network.DTO.ArtistDto;
+import com.example.music_app.network.DTO.GetAlbumsDto;
+import com.example.music_app.network.DTO.SearchAlbumDto;
 import com.example.music_app.network.DTO.SearchResponseDto;
 import com.example.music_app.network.DTO.TopTrackResponseDto;
 import com.example.music_app.network.DTO.TrackDto;
@@ -45,5 +47,14 @@ public interface SpotifyService {
             @Query("q") String query,
             @Query("type") String type
     );
+
+    @GET("v1/new-releases")
+    Call<SearchResponseDto> getNewReleases(
+            @Header("Authorization") String token
+    );
+
+    @GET("v1/albums")
+    Call<GetAlbumsDto> getAlbums(@Header("Authorization") String token,
+                                 @Query("ids") String albumIds);
 
 }

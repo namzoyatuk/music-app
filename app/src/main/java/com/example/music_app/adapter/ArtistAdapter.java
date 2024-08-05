@@ -12,8 +12,8 @@ import com.example.music_app.databinding.ItemArtistBinding;
 import com.example.music_app.network.DTO.ArtistDto;
 
 public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistViewHolder> {
-    private Context context;
-    private ArtistDto artist;
+    private final Context context;
+    private final ArtistDto artist;
 
     public ArtistAdapter(Context context, ArtistDto artist) {
         this.context = context;

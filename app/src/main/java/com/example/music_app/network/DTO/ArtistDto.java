@@ -2,13 +2,14 @@ package com.example.music_app.network.DTO;
 
 import androidx.room.Dao;
 
+import java.io.Serializable;
 import java.util.Dictionary;
 import java.util.List;
 
 import lombok.*;
 
 @Getter
-public class ArtistDto implements Searchable {
+public class ArtistDto implements Searchable, Serializable {
 
     private String id;
     private String name;
@@ -35,5 +36,10 @@ public class ArtistDto implements Searchable {
     @Override
     public String getType() {
         return "Artist";
+    }
+
+    @Override
+    public String getId() {
+        return id;
     }
 }

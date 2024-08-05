@@ -1,17 +1,27 @@
 package com.example.music_app.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.music_app.R;
 import com.example.music_app.databinding.ItemSearchResultBinding;
+import com.example.music_app.network.DTO.AlbumDto;
+import com.example.music_app.network.DTO.ArtistDto;
 import com.example.music_app.network.DTO.Searchable;
+import com.example.music_app.network.DTO.TrackDto;
+import com.example.music_app.ui.AlbumActivity;
+import com.example.music_app.ui.ArtistActivity;
+import com.example.music_app.ui.TrackActivity;
 
 import java.util.List;
 
@@ -37,7 +47,33 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         Searchable item = searchResults.get(position);
         holder.bind(item);
 
+        // TODO REFACTOR USING POLYMORPHISM
+        holder.itemView.setOnClickListener(v -> {
 
+
+            FragmentActivity activity = (FragmentActivity) context;
+            Fragment currentFragment = activity.getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+            if (currentFragment != null) {
+                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                transaction.remove(currentFragment);
+                transaction.commit();
+            }
+
+
+            if (item instanceof AlbumDto) {
+                Intent intent = new Intent(context, AlbumActivity.class);
+                intent.putExtra("albumId", item.getId());
+                context.startActivity(intent);
+            } else if (item instanceof ArtistDto) {
+                Intent intent = new Intent(context, ArtistActivity.class);
+                intent.putExtra("artistId", item.getId());
+                context.startActivity(intent);
+            } else if (item instanceof TrackDto) {
+                Intent intent = new Intent(context, TrackActivity.class);
+                intent.putExtra("trackId", item.getId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

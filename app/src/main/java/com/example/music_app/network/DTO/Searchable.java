@@ -4,4 +4,5 @@ public interface Searchable {
     public String getName();
     public String getImageUrl();
     public String getType();
+    public String getId();
 }
