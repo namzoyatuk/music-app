@@ -57,8 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
         mainAlbumAdapter = new MainAlbumAdapter(this);
 
-        String[] albumIds = {"5ZICh7iFpmgreWvpU9Og4G","2v9PjvIkQVnyQdtD1iQD7e",
-                            "1m07iv4leo4aoqFs60vHCK", "6GGkLeS1HTtr45DlF8YHYN"};
+        String[] albumIds = {"5ZICh7iFpmgreWvpU9Og4G","7cEfK4Fu6GRuo7G8yvOERi",
+                            "4IUeKh2mYOX2njthGA8STM",
+                            "2v9PjvIkQVnyQdtD1iQD7e","7mNNg5DVEW2SgBr4pGWAW6",
+                            "1m07iv4leo4aoqFs60vHCK", "7IKUTIc9UWuVngyGPtqNHS",
+                            "6GGkLeS1HTtr45DlF8YHYN"
+                            };
         albumViewModel.getAlbums(Arrays.asList(albumIds)).observe(this, albums -> {
             if (albums != null) {
                 mainAlbumAdapter.setAlbumList(albums);

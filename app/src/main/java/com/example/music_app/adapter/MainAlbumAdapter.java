@@ -47,11 +47,13 @@ public class MainAlbumAdapter extends RecyclerView.Adapter<MainAlbumAdapter.Main
         AlbumDto album = albumList.get(position);
         holder.bind(album);
 
-        holder.binding.imageMainAlbum.setOnClickListener( v -> {
+        holder.binding.getRoot().setOnClickListener( v -> {
             Intent intent = new Intent(context, AlbumActivity.class);
             intent.putExtra("albumId", albumList.get(position).getId());
             context.startActivity(intent);
         });
+
+        holder.binding.nameMainAlbum.setSelected(true);
     }
 
 
@@ -75,6 +77,8 @@ public class MainAlbumAdapter extends RecyclerView.Adapter<MainAlbumAdapter.Main
                     .load(album.getImages().get(0).getUrl())
                     .into(binding.imageMainAlbum);
             binding.imageMainAlbum.setTag(album.getId());
+
+            binding.nameMainAlbum.setText(album.getName());
         }
     }
 

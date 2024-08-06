@@ -2,6 +2,10 @@ package com.example.music_app.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.widget.MediaController;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,13 +21,17 @@ import com.example.music_app.viewmodel.TrackViewModel;
 
 public class TrackActivity extends AppCompatActivity {
     private TrackAdapter trackAdapter;
+    private MediaController mediaController;
+    private SurfaceView surfaceView;
+    private SurfaceHolder surfaceHolder;
+    private String previewUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track);
 
-        // TODO binding..
+
         RecyclerView recyclerView = findViewById(R.id.recycler_track);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

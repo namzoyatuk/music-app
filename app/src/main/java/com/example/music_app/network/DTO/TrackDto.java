@@ -17,7 +17,7 @@ public class TrackDto implements Searchable, Serializable {
     private boolean isPlayable;
     private String name;
     private int popularity;
-    private String previewUrl;
+    private String preview_url;
     private int trackNumber;
     private String type;
     private String uri;

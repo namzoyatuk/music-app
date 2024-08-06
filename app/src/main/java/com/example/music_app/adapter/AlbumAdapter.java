@@ -49,6 +49,9 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
             intent.putExtra("artistId", album.getArtists().get(0).getId());
             context.startActivity(intent);
         });
+
+        holder.binding.albumName.setSelected(true);
+
     }
 
     @Override

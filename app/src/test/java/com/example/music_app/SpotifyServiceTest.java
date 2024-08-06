@@ -76,7 +76,7 @@ public class SpotifyServiceTest {
             assert response.body() != null;
             System.err.println(response.body().getName());
             System.err.println(response.body().getAlbum().getName());
-            System.err.println(response.body().getPreviewUrl());
+            System.err.println(response.body().getPreview_url());
             System.err.println(response.body().getPopularity());
             System.err.println(response.body().getArtists().get(0).getName());
             System.err.println(response.body().getTrackNumber());
@@ -96,7 +96,7 @@ public class SpotifyServiceTest {
             List<TrackDto> tracks = response.body().getTracks();
             assert response.body() != null;
             System.err.println(tracks.size());
-            System.err.println(tracks.get(0).getName());
+            System.err.println(tracks.get(0).getPreview_url());
             System.err.println(tracks.get(1).getName());
 
         }

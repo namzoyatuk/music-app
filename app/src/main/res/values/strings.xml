@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">music_app</string>
+    <string name="search_result_image">Search Result Image</string>
 </resources>

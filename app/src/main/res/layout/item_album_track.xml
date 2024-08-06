@@ -15,7 +15,12 @@
         android:textColor="#351A65"
         android:textStyle="bold"
         android:clickable="true"
-        android:focusable="true"/>
+        android:focusable="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:focusableInTouchMode="true"
+        android:scrollHorizontally="true"/>
 
     <TextView
         android:id="@+id/album_track_duration"

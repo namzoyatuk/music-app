@@ -48,6 +48,8 @@ public class AlbumTrackAdapter extends RecyclerView.Adapter<AlbumTrackAdapter.Al
             intent.putExtra("trackId", track.getId());
             context.startActivity(intent);
         });
+
+        holder.binding.albumTrackName.setSelected(true);
     }
 
     public int getItemCount() {

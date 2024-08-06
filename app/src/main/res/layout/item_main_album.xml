@@ -2,7 +2,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    android:clickable="true"
+    android:focusable="true">
 
     <ImageView
         android:id="@+id/image__main_album"
@@ -10,8 +12,24 @@
         android:layout_height="200dp"
         android:importantForAccessibility="no"
         android:scaleType="fitStart"
-        android:clickable="true"
-        android:focusable="true"/>
+        />
+
+    <TextView
+        android:id="@+id/name__main_album"
+        android:layout_width="match_parent"
+        android:layout_height="230sp"
+        android:paddingTop="180dp"
+        android:textColor="#673AB7"
+        android:textSize="25sp"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxLines="2"
+        android:singleLine="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollHorizontally="true"/>
 
 
 </FrameLayout>
