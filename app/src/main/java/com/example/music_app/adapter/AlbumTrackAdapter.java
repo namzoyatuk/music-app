@@ -4,15 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.music_app.R;
-import com.example.music_app.databinding.ItemAlbumBinding;
 import com.example.music_app.databinding.ItemAlbumTrackBinding;
 import com.example.music_app.network.DTO.TrackDto;
 import com.example.music_app.ui.TrackActivity;
@@ -46,6 +42,7 @@ public class AlbumTrackAdapter extends RecyclerView.Adapter<AlbumTrackAdapter.Al
         holder.binding.albumTrackName.setOnClickListener(v -> {
             Intent intent = new Intent(context, TrackActivity.class);
             intent.putExtra("trackId", track.getId());
+            intent.putExtra("previewUrl", track.getPreview_url());
             context.startActivity(intent);
         });
 

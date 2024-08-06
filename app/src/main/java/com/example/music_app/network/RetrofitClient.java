@@ -3,7 +3,7 @@ package com.example.music_app.network;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public  class RetrofitClient {
+public class RetrofitClient {
     private static final String BASE_URL = "https://api.spotify.com/";
 
     private static final Retrofit retrofit = new Retrofit.Builder()

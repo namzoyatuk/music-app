@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">music_app</string>
     <string name="search_result_image">Search Result Image</string>
+    <string name="home">Home</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="home1">Home</string>
+    <string name="album_image">album image</string>
 </resources>

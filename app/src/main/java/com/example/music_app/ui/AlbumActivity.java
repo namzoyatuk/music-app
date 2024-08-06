@@ -1,6 +1,5 @@
 package com.example.music_app.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,14 +12,12 @@ import com.example.music_app.MainActivity;
 import com.example.music_app.R;
 import com.example.music_app.adapter.AlbumAdapter;
 import com.example.music_app.adapter.AlbumTrackAdapter;
-import com.example.music_app.databinding.ActivityAlbumBinding;
 import com.example.music_app.network.RetrofitClient;
 import com.example.music_app.network.SpotifyService;
 import com.example.music_app.repository.AlbumRepository;
 import com.example.music_app.viewmodel.AlbumViewModel;
 
 public class AlbumActivity extends AppCompatActivity {
-    private AlbumViewModel albumViewModel;
     private AlbumAdapter albumAdapter;
     private AlbumTrackAdapter albumTrackAdapter;
 
@@ -40,7 +37,7 @@ public class AlbumActivity extends AppCompatActivity {
         SpotifyService spotifyService = RetrofitClient.getSpotifyService();
         AlbumRepository albumRepository = AlbumRepository.getInstance(spotifyService);
         AlbumViewModel.Factory factory = new AlbumViewModel.Factory(albumRepository);
-        albumViewModel = new ViewModelProvider(this, factory).get(AlbumViewModel.class);
+        AlbumViewModel albumViewModel = new ViewModelProvider(this, factory).get(AlbumViewModel.class);
 
         String albumId = getIntent().getStringExtra("albumId");
 
@@ -62,7 +59,4 @@ public class AlbumActivity extends AppCompatActivity {
     }
 
 
-    public static Intent createIntent(AppCompatActivity activity) {
-        return new Intent(activity, AlbumActivity.class);
-    }
 }

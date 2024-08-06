@@ -1,5 +1,6 @@
 package com.example.music_app.repository;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -30,15 +31,15 @@ public class TrackRepository {
         MutableLiveData<TrackDto> trackData = new MutableLiveData<>();
         spotifyService.getTrack(Constants.SPOTIFY_TOKEN, trackId).enqueue(new Callback<TrackDto>() {
             @Override
-            public void onResponse(Call<TrackDto> call, Response<TrackDto> response) {
+            public void onResponse(@NonNull Call<TrackDto> call, @NonNull Response<TrackDto> response) {
                 if (response.isSuccessful()) {
                     trackData.setValue(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<TrackDto> call, Throwable t) {
-                // Handle failure
+            public void onFailure(@NonNull Call<TrackDto> call, @NonNull Throwable t) {
+                System.err.println("Could not reach to the api while getting track: " + t.getMessage());
             }
         });
         return trackData;

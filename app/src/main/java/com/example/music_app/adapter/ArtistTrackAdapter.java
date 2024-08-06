@@ -45,8 +45,11 @@ public class ArtistTrackAdapter extends RecyclerView.Adapter<ArtistTrackAdapter.
         holder.binding.artistTrackName.setOnClickListener(v -> {
             Intent intent = new Intent(context, TrackActivity.class);
             intent.putExtra("trackId", track.getId());
+            intent.putExtra("previewUrl", track.getPreview_url());
             context.startActivity(intent);
         });
+
+        holder.binding.artistTrackName.setSelected(true);
     }
 
     public int getItemCount() {

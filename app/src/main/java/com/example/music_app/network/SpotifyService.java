@@ -3,7 +3,6 @@ package com.example.music_app.network;
 import com.example.music_app.network.DTO.AlbumDto;
 import  com.example.music_app.network.DTO.ArtistDto;
 import com.example.music_app.network.DTO.GetAlbumsDto;
-import com.example.music_app.network.DTO.SearchAlbumDto;
 import com.example.music_app.network.DTO.SearchResponseDto;
 import com.example.music_app.network.DTO.TopTrackResponseDto;
 import com.example.music_app.network.DTO.TrackDto;

@@ -94,7 +94,6 @@ public class SpotifyServiceTest {
             Response<TopTrackResponseDto> response = call.execute();
             assert response.body() != null;
             List<TrackDto> tracks = response.body().getTracks();
-            assert response.body() != null;
             System.err.println(tracks.size());
             System.err.println(tracks.get(0).getPreview_url());
             System.err.println(tracks.get(1).getName());
@@ -117,7 +116,6 @@ public class SpotifyServiceTest {
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("AA");
         }
     }
 
@@ -132,7 +130,6 @@ public class SpotifyServiceTest {
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("AA");
         }
     }
 
@@ -149,7 +146,6 @@ public class SpotifyServiceTest {
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("AA");
         }
     }
 

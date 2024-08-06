@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.music_app.MainActivity;
 import com.example.music_app.R;
-import com.example.music_app.adapter.AlbumTrackAdapter;
 import com.example.music_app.adapter.ArtistAdapter;
 import com.example.music_app.adapter.ArtistTrackAdapter;
 import com.example.music_app.network.RetrofitClient;
@@ -18,7 +17,6 @@ import com.example.music_app.repository.ArtistRepository;
 import com.example.music_app.viewmodel.ArtistViewModel;
 
 public class ArtistActivity extends AppCompatActivity {
-    private ArtistViewModel artistViewModel;
     private ArtistAdapter artistAdapter;
     private ArtistTrackAdapter artistTrackAdapter;
 
@@ -36,9 +34,9 @@ public class ArtistActivity extends AppCompatActivity {
         SpotifyService spotifyService = RetrofitClient.getSpotifyService();
         ArtistRepository artistRepository = ArtistRepository.getInstance(spotifyService);
         ArtistViewModel.Factory factory = new ArtistViewModel.Factory(artistRepository);
-        artistViewModel = new ViewModelProvider(this, factory).get(ArtistViewModel.class);
+        ArtistViewModel artistViewModel = new ViewModelProvider(this, factory).get(ArtistViewModel.class);
 
-        String artistId = getIntent().getStringExtra("artistId"); // TODO
+        String artistId = getIntent().getStringExtra("artistId");
 
         artistViewModel.getArtist(artistId).observe(this, artist -> {
             artistAdapter = new ArtistAdapter(this, artist);
@@ -59,7 +57,4 @@ public class ArtistActivity extends AppCompatActivity {
         });
     }
 
-    public static Intent createIntent(AppCompatActivity activity) {
-        return new Intent(activity, ArtistActivity.class);
-    }
 }

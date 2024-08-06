@@ -14,8 +14,6 @@ import com.example.music_app.databinding.ItemAlbumBinding;
 import com.example.music_app.network.DTO.AlbumDto;
 import com.example.music_app.ui.ArtistActivity;
 
-import java.util.List;
-
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> {
     private final Context context;
     private final AlbumDto album;

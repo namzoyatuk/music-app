@@ -3,7 +3,6 @@ package com.example.music_app.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -26,7 +25,7 @@ import com.example.music_app.ui.TrackActivity;
 import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
-    private Context context;
+    private final Context context;
     private final List<Searchable> searchResults;
 
     public SearchAdapter(Context context, List<Searchable> searchResults) {
@@ -47,7 +46,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         Searchable item = searchResults.get(position);
         holder.bind(item);
 
-        // TODO REFACTOR USING POLYMORPHISM
         holder.itemView.setOnClickListener(v -> {
 
 
@@ -71,9 +69,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             } else if (item instanceof TrackDto) {
                 Intent intent = new Intent(context, TrackActivity.class);
                 intent.putExtra("trackId", item.getId());
+                intent.putExtra("previewUrl", ((TrackDto) item).getPreview_url());
                 context.startActivity(intent);
             }
         });
+
+
+
     }
 
     @Override

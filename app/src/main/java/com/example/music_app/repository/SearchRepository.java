@@ -1,5 +1,6 @@
 package com.example.music_app.repository;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -30,14 +31,14 @@ public class SearchRepository {
         MutableLiveData<SearchResponseDto> searchData = new MutableLiveData<>();
         spotifyService.search(Constants.SPOTIFY_TOKEN, query, type).enqueue(new Callback<SearchResponseDto>() {
             @Override
-            public void onResponse(Call<SearchResponseDto> call, Response<SearchResponseDto> response) {
+            public void onResponse(@NonNull Call<SearchResponseDto> call, @NonNull Response<SearchResponseDto> response) {
                 if (response.isSuccessful()) {
                     searchData.setValue(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<SearchResponseDto> call, Throwable t) {
+            public void onFailure(@NonNull Call<SearchResponseDto> call, @NonNull Throwable t) {
                 searchData.setValue(null);
             }
         });

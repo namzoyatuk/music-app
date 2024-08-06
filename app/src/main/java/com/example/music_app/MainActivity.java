@@ -1,34 +1,24 @@
 package com.example.music_app;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.GridLayout;
 import android.widget.SearchView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.music_app.adapter.MainAlbumAdapter;
-import com.example.music_app.database.entitites.Artist;
 import com.example.music_app.databinding.ActivityMainBinding;
 import com.example.music_app.network.RetrofitClient;
 import com.example.music_app.network.SpotifyService;
 import com.example.music_app.repository.AlbumRepository;
 import com.example.music_app.repository.SearchRepository;
-import com.example.music_app.ui.AlbumActivity;
-import com.example.music_app.ui.ArtistActivity;
 import com.example.music_app.ui.SearchFragment;
-import com.example.music_app.ui.TrackActivity;
 import com.example.music_app.viewmodel.AlbumViewModel;
 
 import java.util.Arrays;

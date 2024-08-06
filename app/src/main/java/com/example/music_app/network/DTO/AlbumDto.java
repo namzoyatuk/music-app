@@ -3,9 +3,10 @@ package com.example.music_app.network.DTO;
 import java.io.Serializable;
 import java.util.List;
 
+import lombok.Data;
 import lombok.Getter;
 
-@Getter
+@Data
 public class AlbumDto implements Searchable, Serializable {
     private String album_type;
     private int total_tracks;

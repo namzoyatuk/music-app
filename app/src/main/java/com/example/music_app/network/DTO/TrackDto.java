@@ -5,9 +5,9 @@ import androidx.annotation.NonNull;
 import java.io.Serializable;
 import java.util.List;
 
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 public class TrackDto implements Searchable, Serializable {
     private AlbumDto album;
     private List<ArtistDto> artists;

@@ -19,14 +19,15 @@
             android:id="@+id/album_tracks"
             android:layout_width="match_parent"
             android:layout_height="391dp"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            tools:ignore="TextSizeCheck" />
     </LinearLayout>
 
     <Button
         android:id="@+id/button_home_album"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home"
+        android:text="@string/home1"
         android:layout_gravity="bottom|end"
         android:layout_margin="8dp"
         android:visibility="visible"

@@ -6,8 +6,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.music_app.network.DTO.AlbumDto;
 import com.example.music_app.network.DTO.GetAlbumsDto;
-import com.example.music_app.network.DTO.SearchAlbumDto;
-import com.example.music_app.network.DTO.SearchResponseDto;
 import com.example.music_app.network.SpotifyService;
 import com.example.music_app.util.Constants;
 
@@ -45,7 +43,7 @@ public class AlbumRepository {
 
             @Override
             public void onFailure(@NonNull Call<AlbumDto> call, @NonNull Throwable t) {
-                // Handle failure
+                System.err.println("Could not reach to the api while getting track: " + t.getMessage());
             }
         });
         return albumData;

@@ -1,13 +1,12 @@
 package com.example.music_app.ui;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.widget.MediaController;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.media3.exoplayer.ExoPlayer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,13 +17,15 @@ import com.example.music_app.network.RetrofitClient;
 import com.example.music_app.network.SpotifyService;
 import com.example.music_app.repository.TrackRepository;
 import com.example.music_app.viewmodel.TrackViewModel;
+import androidx.media3.common.MediaItem;
+import androidx.media3.ui.PlayerView;
+
 
 public class TrackActivity extends AppCompatActivity {
     private TrackAdapter trackAdapter;
-    private MediaController mediaController;
-    private SurfaceView surfaceView;
-    private SurfaceHolder surfaceHolder;
     private String previewUrl;
+    private ExoPlayer exoPlayer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +54,41 @@ public class TrackActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
+        previewUrl = getIntent().getStringExtra("previewUrl");
+
+        if (previewUrl != null) {
+            initializePlayer();
+        }
     }
 
-    public static Intent createIntent(AppCompatActivity activity) {
-        return new Intent(activity, TrackActivity.class);
+    private void initializePlayer() {
+        PlayerView playerView = findViewById(R.id.player_view);
+        exoPlayer = new ExoPlayer.Builder(this).build();
+        playerView.setPlayer(exoPlayer);
+
+
+        MediaItem mediaItem = MediaItem.fromUri(Uri.parse(previewUrl));
+        exoPlayer.setMediaItem(mediaItem);
+        exoPlayer.prepare();
+        exoPlayer.play();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (exoPlayer != null) {
+            exoPlayer.release();
+            exoPlayer = null;
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (exoPlayer != null) {
+            exoPlayer.pause();
+        }
+    }
+
 }

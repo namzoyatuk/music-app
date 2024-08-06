@@ -56,6 +56,10 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
             intent.putExtra("artistId", track.getArtists().get(0).getId());
             context.startActivity(intent);
         });
+
+        holder.binding.trackName.setSelected(true);
+        holder.binding.trackArtistName.setSelected(true);
+        holder.binding.trackAlbumName.setSelected(true);
     }
 
     @Override

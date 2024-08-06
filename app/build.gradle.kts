@@ -39,10 +39,13 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.truth)
+    implementation(libs.media3.common)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.rules)
+    implementation(libs.media3.exoplayer)
+    implementation(libs.exoplayer.ui)
 
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)

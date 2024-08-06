@@ -21,7 +21,13 @@
         android:padding="1dp"
         android:textColor="#351A65"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxLines="2"
+        android:singleLine="true"
+        android:focusableInTouchMode="true"
+        android:scrollHorizontally="true"/>
 
 
 </LinearLayout>
