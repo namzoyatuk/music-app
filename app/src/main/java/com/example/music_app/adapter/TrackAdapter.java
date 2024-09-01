@@ -41,7 +41,9 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
     @Override
     public void onBindViewHolder(@NonNull TrackViewHolder holder, int position) {
         Glide.with(context).load(track.getAlbum().getImages().get(0).getUrl()).into(holder.binding.trackImage);
-        holder.binding.trackArtistName.setText(track.getArtists().get(0).getName());
+        if( track.getArtists() != null){
+            holder.binding.trackArtistName.setText(track.getArtists().get(0).getName());
+        }
         holder.binding.trackAlbumName.setText(track.getAlbum().getName());
         holder.binding.trackName.setText(track.getName());
 

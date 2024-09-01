@@ -78,7 +78,7 @@ public class TrackActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         if (exoPlayer != null) {
-            exoPlayer.release();
+            exoPlayer.release(); // TODO silince noluyor?
             exoPlayer = null;
         }
     }

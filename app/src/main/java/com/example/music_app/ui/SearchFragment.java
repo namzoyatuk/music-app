@@ -21,7 +21,6 @@ import javax.annotation.Nullable;
 
 public class SearchFragment extends Fragment {
     private FragmentSearchBinding binding;
-    private SearchAdapter searchAdapter;
 
     @Nullable
     @Override
@@ -49,7 +48,7 @@ public class SearchFragment extends Fragment {
             }
         }
 
-        searchAdapter = new SearchAdapter(getContext(), searchResults);
+        SearchAdapter searchAdapter = new SearchAdapter(getContext(), searchResults);
         binding.searchResults.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.searchResults.setAdapter(searchAdapter);
     }

@@ -58,5 +58,7 @@ dependencies {
     implementation(libs.room)
     annotationProcessor(libs.room.compiler)
     implementation(libs.bumptech)
-    androidTestImplementation(libs.mockito)
+    androidTestImplementation(libs.mockito.android)
+    testImplementation(libs.arch.core)
+    testImplementation(libs.mockito)
 }

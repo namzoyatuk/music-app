@@ -23,6 +23,11 @@ import com.example.music_app.viewmodel.AlbumViewModel;
 
 import java.util.Arrays;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private SearchRepository searchRepository;
@@ -48,10 +53,11 @@ public class MainActivity extends AppCompatActivity {
         mainAlbumAdapter = new MainAlbumAdapter(this);
 
         String[] albumIds = {"5ZICh7iFpmgreWvpU9Og4G","7cEfK4Fu6GRuo7G8yvOERi",
-                            "4IUeKh2mYOX2njthGA8STM",
+                            "4IUeKh2mYOX2njthGA8STM", "1m07iv4leo4aoqFs60vHCK",
                             "2v9PjvIkQVnyQdtD1iQD7e","7mNNg5DVEW2SgBr4pGWAW6",
-                            "1m07iv4leo4aoqFs60vHCK", "7IKUTIc9UWuVngyGPtqNHS",
-                            "6GGkLeS1HTtr45DlF8YHYN"
+                             "7IKUTIc9UWuVngyGPtqNHS",
+                            "6GGkLeS1HTtr45DlF8YHYN", "7Jyg6ic5h9BDJ3WuYWYA6K",
+                            "7CbeLrrlWnIOBH4MjuZFlR"
                             };
         albumViewModel.getAlbums(Arrays.asList(albumIds)).observe(this, albums -> {
             if (albums != null) {
@@ -79,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void searchSpotify(String query) {
+    void searchSpotify(String query) {
         Log.e("MainActivity", "searchSpotify: " + query);
         searchRepository.search(query, "album,track,artist").observe(this, searchResponse -> {
             if (searchResponse != null) {
