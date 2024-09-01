@@ -1,6 +1,6 @@
 # Music App
 
-Dive into the world of music with this Androidapplication, powered by the Spotify Web API! Explore albums, artists, and songs, and even listen to 30-second previews to discover your next favorite track.
+Dive into the world of music with this Android application, powered by the Spotify Web API! Explore albums, artists, and songs, and even listen to 30-second previews to discover your next favorite track.
 
 ## Features
 
