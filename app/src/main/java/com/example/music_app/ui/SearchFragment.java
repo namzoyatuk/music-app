@@ -25,29 +25,37 @@ public class SearchFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate the layout for this fragment using view binding
         binding = FragmentSearchBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+        return binding.getRoot();// Return the root view of the binding
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @androidx.annotation.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Initialize a list to hold search results
         List<Searchable> searchResults = new ArrayList<>();
+
+        // Check if there are arguments passed to the fragment
         if (getArguments() != null) {
+            // Retrieve the search response from the arguments
             SearchResponseDto searchResponse = (SearchResponseDto) getArguments().getSerializable("searchResults");
             if (searchResponse != null) {
+                // Add track items to the search results if available
                 if (searchResponse.getTracks() != null && searchResponse.getTracks().getItems() != null)
                     searchResults.addAll(searchResponse.getTracks().getItems());
+                // Add album items to the search results if available
                 if (searchResponse.getAlbums() != null && searchResponse.getAlbums().getItems() != null)
                     searchResults.addAll(searchResponse.getAlbums().getItems());
+                // Add artist items to the search results if available
                 if (searchResponse.getArtists() != null && searchResponse.getArtists().getItems() != null)
                     searchResults.addAll(searchResponse.getArtists().getItems());
 
 
             }
         }
-
+        // Create an adapter for the search results and set it to the RecyclerView
         SearchAdapter searchAdapter = new SearchAdapter(getContext(), searchResults);
         binding.searchResults.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.searchResults.setAdapter(searchAdapter);

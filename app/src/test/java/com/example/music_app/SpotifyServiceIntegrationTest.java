@@ -30,7 +30,6 @@ public class SpotifyServiceIntegrationTest {
 
         try {
             Response<ArtistDto> response = call.execute();
-            assert response.body() != null;
             assertNotNull(response.body());
             assertEquals("Radiohead", response.body().getName());
         }
@@ -75,9 +74,7 @@ public class SpotifyServiceIntegrationTest {
             Response<TopTrackResponseDto> response = call.execute();
             assertNotNull(response.body());
             List<TrackDto> tracks = response.body().getTracks();
-            System.err.println(tracks.size());
-            System.err.println(tracks.get(0).getPreview_url());
-            System.err.println(tracks.get(1).getName());
+            assert tracks.get(1).getName().equals("No Surprises");
 
         }
         catch (Exception e) {
@@ -93,26 +90,13 @@ public class SpotifyServiceIntegrationTest {
         try {
             Response<com.example.music_app.network.DTO.SearchResponseDto> response = call.execute();
             assert response.body() != null;
-            System.err.println(response.body().getAlbums().getItems().get(0).getName());
+            assert response.body().getAlbums().getItems().get(0).getName().equals("evermore");
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    //Test for new releases
-    @Test
-    public void newReleasesValid(){
-        Call<com.example.music_app.network.DTO.SearchResponseDto> call = spotifyService.getNewReleases(Constants.SPOTIFY_TOKEN);
-        try {
-            Response<com.example.music_app.network.DTO.SearchResponseDto> response = call.execute();
-            assert response.body() != null;
-            System.err.println(response.body().getAlbums().getItems());
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
 
 }

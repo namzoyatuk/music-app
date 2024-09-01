@@ -1,3 +1,6 @@
+//TODO Database is not included for now, however it will be implemented in the future
+
+
 //package com.example.music_app.database;
 //
 //import android.content.Context;

@@ -39,23 +39,6 @@ public class MainActivityTest {
     @Rule
     public ActivityScenarioRule<MainActivity> activityScenarioRule = new ActivityScenarioRule<>(MainActivity.class);
 
-    @Mock
-    private AlbumRepository albumRepository;
-
-    @Mock
-    private AlbumViewModel albumViewModel;
-
-    @Mock
-    private ViewModelProvider.Factory viewModelFactory;
-
-    @Mock
-    private RecyclerView recyclerViewAlbums;
-
-    @Mock
-    private GridLayoutManager gridLayoutManager;
-
-    @Mock
-    private MainAlbumAdapter mainAlbumAdapter;
 
     @Mock
     private SearchRepository searchRepository;
@@ -108,7 +91,6 @@ public class MainActivityTest {
 
         // Verify interactions
         scenario.onActivity(activity -> {
-            FragmentManager fragmentManager = mock(FragmentManager.class); // Mock FragmentManager
             FragmentTransaction fragmentTransaction = mock(FragmentTransaction.class);
             when(fragmentTransaction.replace(eq(R.id.fragment_container), any(SearchFragment.class))).thenReturn(fragmentTransaction);
 
